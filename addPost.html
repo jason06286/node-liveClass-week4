@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addPost</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" defer></script>
+    <script src="./js/addPost.js" defer></script>
+</head>
+<style>
+    .card-shandow {
+        box-shadow: 0px 3px #000;
+    }
+
+    body {
+        font-family: 'Noto Sans TC', sans-serif;
+        background-image: url('./img/bg.svg');
+    }
+
+    .title::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: #000 2px solid;
+        background: white;
+        transform: translateX(-6px) translateY(6px);
+        z-index: -1;
+    }
+</style>
+
+<body>
+    <div class="flex justify-center items-center flex-col mt-32 ">
+        <div class="w-[533px] border-2 border-black bg-white py-4 title relative mb-4 ">
+            <h2 class="text-center font-bold text-xl">張貼動態</h2>
+        </div>
+        <form class="w-[533px] border-2 border-black bg-white rounded-lg p-6 card-shandow">
+            <label for="content" class=" font-medium">貼文內容</label>
+            <textarea name="" id="content" cols="30" rows="6" class="border-2 border-black w-full mb-4 mt-1"
+                placeholder="輸入您的貼文內容"></textarea>
+            <!-- file button -->
+            <label
+                class="bg-black text-white rounded py-1 px-8 cursor-pointer transition duration-100 hover:bg-blue-900">
+                <span class="font-light">上傳圖片</span>
+                <input type="file" class="hidden">
+            </label>
+            <div class="rounded-lg overflow-hidden h-[157px] mt-4 mb-8">
+                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/supergems/1650354324377.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=dSzg6SiXf539bQUM%2BBl0U0A%2BanoITFRrwDIF%2FAoO2LP8SWAwsguyZuCsZbGbK1S9RzxD%2BOoaxazxJFHVjyaXw2bBvle2AKEqsOvsiqJS4FN3JuS%2Bjx39QZJGf0O2xXxx2QKuey4VjbcYWpcAWRunCwb5XnCqTHpLTj6ipnltJnQrJEkX70QC0N8Z26uFHC1SVpV1r2rjoGUu9UnLEJmdv8EAQdmGGeq8zzGPDvKOFbtsw6K2ZO%2B8UepPoHetQZ%2BA3wiDXyObFUrEkatVBahxx4Pt3Cxap3Sx5gQgybD%2BdW3zsEBPnop24xao9NIGEr%2BkBUUAymx%2BGot%2FY9ybEp18Bg%3D%3D"
+                    alt="">
+            </div>
+            <div class="flex justify-center">
+                <button type="button" id="btn"  class="border-2 border-black rounded-lg font-semibold bg-gray-400 w-[320px] py-4 transition duration-200 hover:bg-yellow-400">送出貼文</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
