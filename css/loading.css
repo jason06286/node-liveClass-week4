@@ -1,0 +1,75 @@
+
+@keyframes ldio-rh21r0fw8qi-1 {
+    0% { transform: rotate(0deg) }
+   50% { transform: rotate(-45deg) }
+  100% { transform: rotate(0deg) }
+}
+@keyframes ldio-rh21r0fw8qi-2 {
+    0% { transform: rotate(180deg) }
+   50% { transform: rotate(225deg) }
+  100% { transform: rotate(180deg) }
+}
+.ldio-rh21r0fw8qi > div:nth-child(2) {
+  transform: translate(-15px,0);
+}
+.ldio-rh21r0fw8qi > div:nth-child(2) div {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 90px;
+  height: 45px;
+  border-radius: 90px 90px 0 0;
+  background: #f8b26a;
+  animation: ldio-rh21r0fw8qi-1 1s linear infinite;
+  transform-origin: 45px 45px
+}
+.ldio-rh21r0fw8qi > div:nth-child(2) div:nth-child(2) {
+  animation: ldio-rh21r0fw8qi-2 1s linear infinite
+}
+.ldio-rh21r0fw8qi > div:nth-child(2) div:nth-child(3) {
+  transform: rotate(-90deg);
+  animation: none;
+}@keyframes ldio-rh21r0fw8qi-3 {
+    0% { transform: translate(142.5px,0); opacity: 0 }
+   20% { opacity: 1 }
+  100% { transform: translate(52.5px,0); opacity: 1 }
+}
+.ldio-rh21r0fw8qi > div:nth-child(1) {
+  display: block;
+}
+.ldio-rh21r0fw8qi > div:nth-child(1) div {
+  position: absolute;
+  top: 69px;
+  left: -6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e15b64;
+  animation: ldio-rh21r0fw8qi-3 1s linear infinite
+}
+.ldio-rh21r0fw8qi > div:nth-child(1) div:nth-child(1) { animation-delay: -0.67s }
+.ldio-rh21r0fw8qi > div:nth-child(1) div:nth-child(2) { animation-delay: -0.33s }
+.ldio-rh21r0fw8qi > div:nth-child(1) div:nth-child(3) { animation-delay: 0s }
+.loadingio-spinner-bean-eater-eokupu68k36 {
+  width: 150px;
+  height: 150px;
+  display: inline-block;
+  overflow: hidden;
+  background: none;
+}
+.ldio-rh21r0fw8qi {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(1);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio-rh21r0fw8qi div { box-sizing: content-box; }
+
+.loadingio-spinner-bean-eater-eokupu68k36{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+}

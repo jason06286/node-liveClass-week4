@@ -1,101 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>createPost</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js" defer></script>
-    <script src="./js/post.js"defer></script>
-</head>
-<style>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>動態牆</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/loading.css" />
+    <link rel="stylesheet" href="./css/swiper.css" />
+    <script
+      src="https://cdn-tailwindcss.vercel.app/?plugins=forms,typography,aspect-ratio,line-clamp"
+      defer
+    ></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+      defer
+    ></script>
+    <script src="./js/post.js" defer></script>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Paytone+One&display=swap");
+    .font-Paytone {
+      font-family: "Paytone One", sans-serif;
+    }
+    @import url("https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@700&display=swap");
+    .font-Azeret {
+      font-family: "Azeret Mono", monospace;
+    }
     .card-shandow {
-        box-shadow: 0px 3px #000;
+      box-shadow: 0px 3px #000;
     }
 
     body {
-        font-family: 'Noto Sans TC', sans-serif;
-        background-image: url('./img/bg.svg');
+      font-family: "Noto Sans TC", sans-serif;
+      background-image: url("./img/bg.svg");
     }
-</style>
+  </style>
 
-<body>
-    <div class="flex justify-center items-center flex-col mt-32 ">
+  <body>
+    <nav class="bg-white py-3 border-b-2 border-black">
+      <div class="flex w-[920px] m-auto justify-between items-center">
+        <a href="post.html" class="text-3xl font-Paytone"> MetaWall </a>
+        <div class="flex">
+          <img
+            class="w-[30px] h-[30px]"
+            src="https://i.imgur.com/cjpjvBq.png"
+            alt="大頭貼"
+          />
+          <p class="ml-2 border-b-2 border-black font-bold font-Azeret">
+            Member
+          </p>
+        </div>
+      </div>
+    </nav>
+    <div class="flex gap-x-8 mt-12 w-[920px] m-auto">
+      <div class="flex items-center flex-col">
         <div class="flex mb-4">
-            <select
-                class="w-[156px]  border-2 border-black   text-black focus:border-gray-400 transition duration-75 mr-3">
-                <option value="">請選擇</option>
-                <option value="new" selected>最新貼文</option>
-            </select>
-            <div class="w-[365px] border-2 border-black flex">
-                <input type="text" placeholder="搜尋貼文" class="focus:border-gray-400 w-full outline-none border-0">
-                <button type="button"
-                    class="bg-[#03438D] text-white border-l-2 border-black transition duration-100  hover:bg-[#0e315a] w-[46px] flex justify-center  items-center">
-                    <span class="material-icons ">
-                        search
-                    </span>
-                </button>
-            </div>
+          <select
+            id="select"
+            class="w-[156px] border-2 border-black text-black focus:border-gray-400 transition duration-75 mr-3"
+          >
+            <option value="">請選擇</option>
+            <option value="desc" selected>最新貼文</option>
+            <option value="asc">最舊貼文</option>
+          </select>
+          <div class="w-[365px] border-2 border-black flex">
+            <input
+              id="search-input"
+              type="text"
+              placeholder="搜尋貼文"
+              class="focus:border-gray-400 w-full outline-none border-0"
+            />
+            <button
+              id="search-btn"
+              type="button"
+              class="bg-[#03438D] text-white border-l-2 border-black transition duration-100 hover:bg-[#0e315a] w-[46px] flex justify-center items-center"
+            >
+              <span class="material-icons"> search </span>
+            </button>
+          </div>
         </div>
-        <div id="posts">
-
+        <div
+          class="fixed inset-0 hidden"
+          id="loading"
+          style="background: rgba(0, 0, 0, 0.3)"
+        >
+          <div class="loadingio-spinner-bean-eater-eokupu68k36">
+            <div class="ldio-rh21r0fw8qi">
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
         </div>
-        <!-- card have picture
-        <div class="w-[533px] border-2 border-black rounded-lg p-6 card-shandow bg-white mb-4">
-            <div class="flex items-center mb-4">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/supergems/1650353728816.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=hc2mWO9VMxDewGHRjc3agPoVEzLfXj70%2FsFqwbrr7lAQvXXNBdPhUZ5FoYu8F4KWSNf7Y7pJ8R0PY6DoO%2BmSr5i120A5QQmQmj382KrVJ909WZ5fW%2FWuv9c7iur1RGtC9luPTqAIItH%2BmFzETtbEjmTSRxIMzrDwIRDbT2JPMbSgIEmDVvYcBe5TbFdZnVsCJbOCNiPPkKF%2Bg88G2k6LgnhucP4YFzz%2BhJQfz5pMesJmXsY1f8HqJDQLGSIZdmP4PXSE2D7udiFPj%2BsU6kmS92QwL7bOd7Sgnhmi6aPLo96stPhddRQaO4UDVc8LJhgdI%2BGNKGJUYEA01%2BRAKojfkg%3D%3D"
-                    alt="" class="w-[45px] h-[45px] mr-4">
-                <div>
-                    <h2 class="font-bold">邊緣小杰</h2>
-                    <p class="text-gray-400 text-xs">2022/1/10 12:00</p>
-                </div>
+        <div id="posts"></div>
+      </div>
+      <div>
+        <div class="border-black border-2 p-6 bg-white">
+          <a
+            href="addPost.html"
+            class="mb-6 text-white border-2 border-black rounded-lg font-semibold bg-[#03438D] w-[320px] py-4 transition duration-200 hover:bg-yellow-600 flex justify-center items-center h-[60px] card-shandow"
+            >張貼動態</a
+          >
+          <div class="flex items-center mb-5 pl-2 cursor-pointer">
+            <img src="https://i.imgur.com/cjpjvBq.png" alt="大頭貼" />
+            <h3 class="font-bold ml-4">邊緣小杰</h3>
+          </div>
+          <div class="flex items-center mb-5 pl-2 cursor-pointer">
+            <div
+              class="bg-[#E2EDFA] w-[50px] h-[50px] border-black border rounded-full flex items-center justify-center"
+            >
+              <span class="material-icons"> notifications </span>
             </div>
-            <p class="font-normal mb-4">
-                外面看起來就超冷... <br>
-                我決定回被窩繼續睡...&gt;.&lt; </p>
-            <div class="rounded-lg overflow-hidden h-[157px]">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/supergems/1650354324377.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=dSzg6SiXf539bQUM%2BBl0U0A%2BanoITFRrwDIF%2FAoO2LP8SWAwsguyZuCsZbGbK1S9RzxD%2BOoaxazxJFHVjyaXw2bBvle2AKEqsOvsiqJS4FN3JuS%2Bjx39QZJGf0O2xXxx2QKuey4VjbcYWpcAWRunCwb5XnCqTHpLTj6ipnltJnQrJEkX70QC0N8Z26uFHC1SVpV1r2rjoGUu9UnLEJmdv8EAQdmGGeq8zzGPDvKOFbtsw6K2ZO%2B8UepPoHetQZ%2BA3wiDXyObFUrEkatVBahxx4Pt3Cxap3Sx5gQgybD%2BdW3zsEBPnop24xao9NIGEr%2BkBUUAymx%2BGot%2FY9ybEp18Bg%3D%3D"
-                    alt="">
+            <h3 class="font-bold ml-4">追蹤名單</h3>
+          </div>
+          <div class="flex items-center mb-5 pl-2 cursor-pointer">
+            <div
+              class="bg-[#E2EDFA] w-[50px] h-[50px] border-black border rounded-full flex items-center justify-center"
+            >
+              <span class="material-icons"> thumb_up_alt </span>
             </div>
+            <h3 class="font-bold ml-4">我按鑽的文章</h3>
+          </div>
         </div>
-        card  
-        <div class="w-[533px] border-2 border-black rounded-lg p-6 card-shandow bg-white mb-4">
-            <div class="flex items-center mb-4">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/supergems/1650354743451.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=cNMB1uqm559K3seWDhC4z58QEf7STjCDI7rzFL%2FsKrQaQNNUE4YAhDwvRJw345%2F%2BLhQvWc2d%2BCpSytHjawI3y%2F%2FIYZ3W%2Ft4yfUCygtsl%2BCfTydSNkQL8fRP0KHCS1JAmwUxQZFprXEOdSP%2BRPG0c6Gs28LRjiaOHUDRl05jJWqGYnv5OEatoze852hxYAtm5qd1ZZmDyvC5eVSmeWlkyo58X8bgJuQrJA39BrykJCtA%2FMuQ7mNEjYf9Ua2HGq3pvFIaYcYrC%2FPW94cRH8kB7T%2FROBiqzL%2FCDxO4kbU2NcL3Tugxo3SVDIEymf%2B%2FPM1fKZRK7pPxTgp%2B1KBMok427Gw%3D%3D"
-                    alt="" class="w-[45px] h-[45px] mr-4">
-                <div>
-                    <h2 class="font-bold">波吉</h2>
-                    <p class="text-gray-400 text-xs">2022/1/10 12:00</p>
-                </div>
-            </div>
-            <p class="font-normal mb-4">
-                我一定要成為很棒棒的國王 !
-            </p>
-        </div>
-       card   
-        <div class="w-[533px] border-2 border-black rounded-lg p-6 card-shandow bg-white mb-4">
-            <div class="flex items-center mb-4">
-                <img src="https://storage.googleapis.com/vue-course-api.appspot.com/supergems/1650355390909.png?GoogleAccessId=firebase-adminsdk-zzty7%40vue-course-api.iam.gserviceaccount.com&Expires=1742169600&Signature=OYVx2C6Ux2ukJD9RsvkNGZ%2FtZUxAMhCHOHoF4aP8rNqkIlVipHhHiBiM7Zy%2B44wI%2Bes%2BpvNXaI5t%2BmuELFQ8OWHWoso7QKwJMhiQseyPLr6Bt7RI2UcorBuqWeDF8E1aNJx2UsqyWYUgYEh8WQjndtlBu2qrZp31mTzflLKfHW1OiNBwVWtefC9UQInZzjz9nt0RxE4vK6Q3QZsCtBdp%2FqvSmYtrBqj7pwTt6gWfMQ%2BWamCI%2F5dxC1TKkzZNGIqP6v2tQp87j0Ln6Ka4alTihzZHr1i0iMJM5BcHoyvmpGV1du7rMRHkK%2FfHAgU%2BrTkuHYn8M9Mw23HB1%2B27Xvq7YA%3D%3D"
-                    alt="" class="w-[45px] h-[45px] mr-4 ">
-                <div>
-                    <h2 class="font-bold">阿爾敏</h2>
-                    <p class="text-gray-400 text-xs">2022/1/10 12:00</p>
-                </div>
-            </div>
-            <p class="font-normal mb-4">
-                各位我有一個作戰計畫
-            </p>
-        </div>  -->
-
+      </div>
     </div>
-</body>
-
+  </body>
 </html>

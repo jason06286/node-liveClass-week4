@@ -1,0 +1,35 @@
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  background: #fff;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: white;
+  background-color: rgba(255, 255, 255, 0.5);
+  right: 10px;
+  padding: 30px;
+  font-weight: bold;
+  color: rgb(63, 58, 58) !important;
+  fill: rgb(63, 58, 58) !important;
+  stroke: rgb(63, 58, 58) !important;
+}
+:root {
+  --swiper-theme-color: #2f343b;
+}
